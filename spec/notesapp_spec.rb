@@ -1,17 +1,25 @@
 require 'notesapp'
 
+# 2. User can see a list of all note titles
 
 describe ReadNotes do
 
-  # describe '#add_note' do
-  #   it { is_expected.to respond_to(:add_note) }
-  # end
+  note1 = AddNote.new
+  title = note1.title
+  body = note1.body
+  note1.add_note(title, body)
 
+  describe '#read_titles' do
+    it { is_expected.to respond_to(:read_titles).with(1).argument }
 
+    it 'shows all titles' do
+      expect(subject.read_titles(note1)).to include(title)
+    end
+  end
 end
 
-describe AddNote do
 
+describe AddNote do
 
   describe '#add_note' do
     # 1. User can add a note with a title and a body
@@ -26,6 +34,3 @@ describe AddNote do
     end
   end
 end
-
-
-# 1. User can add a note with a title and a body

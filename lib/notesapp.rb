@@ -1,11 +1,12 @@
 class ReadNotes
 
-    # def add_note
-
-    # end
-
-
+  def read_titles(note)
+    note.notes.each do | key, value |
+      puts key
+    end
+  end
 end
+
 
 class AddNote
 
