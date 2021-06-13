@@ -1,36 +1,38 @@
 require 'notesapp'
+require 'addnote.rb'
 
-# 2. User can see a list of all note titles
+describe NotesApp do
 
-describe ReadNotes do
+  let(:notebook) { NotesApp.new }
+  let(:note1) { AddNote.new("Cat", "Feed the cat") }
 
-  note1 = AddNote.new
-  title = note1.title
-  body = note1.body
-  note1.add_note(title, body)
+  it 'initializes with an empty notes hash' do
+    expect(notebook.notes).to be_empty
+  end
 
+  it 'stores a note in notes hash' do
+    notebook.store_note(note1)
+    expect(notebook.notes).to eq({"Cat" => "Feed the cat"})
+  end
+
+  # 2. User can see a list of all note titles
   describe '#read_titles' do
-    it { is_expected.to respond_to(:read_titles).with(1).argument }
+    it { is_expected.to respond_to(:read_titles) }
 
     it 'shows all titles' do
-      expect(subject.read_titles(note1)).to include(title)
+      notebook.store_note(note1)
+      expect(notebook.read_titles).to eq(note1.title)
     end
   end
-end
 
+  # # 3. User can pick a note and see its title and body
+  describe '#read_note' do
+    it { is_expected.to respond_to(:read_note).with(1).argument }
 
-describe AddNote do
-
-  describe '#add_note' do
-    # 1. User can add a note with a title and a body
-    notes = :notes
-
-    it { is_expected.to respond_to(:add_note).with(2).arguments }
-
-    it 'title and body is included in notes hash' do
-      subject.add_note(:title, :body)
-      expect(subject.notes).to have_key(:title)
-      expect(subject.notes).to have_value(:body)
+    it 'returns a body' do
+      notebook.store_note(note1)
+      expect(notebook.read_note("Cat")).to eq("Feed the cat")
     end
   end
+
 end
