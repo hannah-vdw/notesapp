@@ -15,7 +15,7 @@ describe NotesApp do
     expect(notebook.notes).to eq({"Cat" => "Feed the cat"})
   end
 
-  # 2. User can see a list of all note titles
+
   describe '#read_titles' do
     it { is_expected.to respond_to(:read_titles) }
 
@@ -25,7 +25,6 @@ describe NotesApp do
     end
   end
 
-  # # 3. User can pick a note and see its title and body
   describe '#read_note' do
     it { is_expected.to respond_to(:read_note).with(1).argument }
 
