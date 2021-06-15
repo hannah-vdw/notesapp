@@ -4,7 +4,7 @@ require 'addnote.rb'
 describe NotesApp do
 
   let(:notebook) { NotesApp.new }
-  let(:note1) { AddNote.new("Cat", "Feed the cat") }
+  let(:note1) { double :note_double, title: "Cat", body: "Feed the cat" }
 
   it 'initializes with an empty notes hash' do
     expect(notebook.notes).to be_empty
@@ -12,7 +12,7 @@ describe NotesApp do
 
   it 'stores a note in notes hash' do
     notebook.store_note(note1)
-    expect(notebook.notes).to eq({"Cat" => "Feed the cat"})
+    expect(notebook.notes).to eq({note1.title => note1.body})
   end
 
 
@@ -30,7 +30,7 @@ describe NotesApp do
 
     it 'returns a body' do
       notebook.store_note(note1)
-      expect(notebook.read_note("Cat")).to eq("Feed the cat")
+      expect(notebook.read_note(note1.title)).to eq(note1.body)
     end
   end
 

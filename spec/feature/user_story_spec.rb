@@ -19,7 +19,7 @@ end
 # # 3. User can pick a note and see its title and body
 it 'shows body of note when title is selected' do
   notebook.store_note(new_note)
-  expect { notebook.read_note }.not_to raise_error
+  expect(notebook.read_note("Cat")).to eq("Feed the cat")
 end
 
 end

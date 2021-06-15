@@ -4,6 +4,7 @@ describe AddNote do
 
   describe '#add_note' do
    
+  # UNSURE if this amount of hardcoding is acceptable because it's for the class we're testing
     let(:new_note) { AddNote.new("Cat", "Feed the cat") }
 
     it 'on initialize' do
